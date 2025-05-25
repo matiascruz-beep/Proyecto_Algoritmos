@@ -19,10 +19,10 @@ namespace TPFinal
 			empresa NuevaEmpresa = new empresa ("AMD");
 			grupoDeObreros grupo1 = new grupoDeObreros("cod1","grupo1");
 			grupoDeObreros grupo2 = new grupoDeObreros("cod2","grupo2");
-			//grupoDeObreros grupo3 = new grupoDeObreros("cod3","grupo3");
+			grupoDeObreros grupo3 = new grupoDeObreros("cod3","grupo3");
 			grupoDeObreros grupo4 = new grupoDeObreros("cod4","grupo4");
 			grupoDeObreros grupo5 = new grupoDeObreros("cod5","grupo5");
-			//grupoDeObreros grupo6 = new grupoDeObreros("cod6","grupo6");
+			grupoDeObreros grupo6 = new grupoDeObreros("cod6","grupo6");
 			grupoDeObreros grupo7 = new grupoDeObreros("cod7","grupo7");
 			grupoDeObreros grupo8 = new grupoDeObreros("cod8","grupo8");
 			
@@ -96,10 +96,10 @@ namespace TPFinal
 			grupos.Add(grupo8);*/
 			NuevaEmpresa.agregar_grupo_a_lista(grupo1);
 			NuevaEmpresa.agregar_grupo_a_lista(grupo2);
-			//NuevaEmpresa.agregar_grupo_a_lista(grupo3);
+			NuevaEmpresa.agregar_grupo_a_lista(grupo3);
 			NuevaEmpresa.agregar_grupo_a_lista(grupo4);
 			NuevaEmpresa.agregar_grupo_a_lista(grupo5);
-			//NuevaEmpresa.agregar_grupo_a_lista(grupo6);
+			NuevaEmpresa.agregar_grupo_a_lista(grupo6);
 			NuevaEmpresa.agregar_grupo_a_lista(grupo7);
 			NuevaEmpresa.agregar_grupo_a_lista(grupo8);
 			
@@ -144,13 +144,15 @@ namespace TPFinal
                       	"Nombre", "Apellido", "DNI", "Legajo", "Sueldo", "Cargo");
    						Console.WriteLine(new string('-', 90)); // Línea separadora
 							foreach (obrero elemen in verObreros) {
+   							if(elemen.GetType() == typeof(obrero)){
 							Console.WriteLine("{0,-15} {1,-15} {2,-12} {3,-10} {4,-10:F2} {5,-15}\n", elemen.Nombre, elemen.Apellido, elemen.Dni, elemen.Legajo, elemen.Sueldo, elemen.Cargo);
 							}
+   						}
 						
 						Console.Write("Ingrese el legajo: ");
 						string empleadoELimar = Console.ReadLine();
 						eliminarelobrero(empleadoELimar,NuevaEmpresa);
-						Console.WriteLine("Eliminado con exito");
+						
 						Console.WriteLine("Presione una tecla para continuar...");
 						Console.ReadKey(true);
 						break;
@@ -263,12 +265,18 @@ namespace TPFinal
 	// LA FUNCION SE UTILIZA EN LA OPCION "B" DEL MAIN
 	static void eliminarelobrero(string legajo, empresa laempresa){
 		List<obrero> listObrero = laempresa.listaObrero();
-			
 		for (int i = 0; i < listObrero.Count; i++) {
-			
-			obrero on = (obrero)listObrero[i];
-			if (legajo == on.Legajo) {
-				laempresa.EliminarObrero(on);
+			obrero ob = (obrero)listObrero[i];
+			if (legajo == ob.Legajo) {
+				laempresa.EliminarObrero(ob);
+				Console.WriteLine("\nEliminado con exito de la empresa\n");
+				List<grupoDeObreros> lista = laempresa.devoler_lista_grupos();
+				foreach(grupoDeObreros grupo in lista){
+					if(grupo.ExisteObrero(ob) == true){
+						grupo.EliminarObrero(ob);
+						Console.WriteLine("Obrero {0} {1} eliminado del {2}\n",ob.Nombre,ob.Apellido,grupo.Nombre);
+				 }
+			  }
 		   }
 		}
 	 }
