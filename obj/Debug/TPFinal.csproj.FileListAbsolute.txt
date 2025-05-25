@@ -1,0 +1,6 @@
+C:\Users\mati1\OneDrive\Desktop\mati proyecto\obj\Debug\TPFinal.csprojResolveAssemblyReference.cache
+C:\Users\mati1\Documents\mati proyecto\obj\Debug\TPFinal.csprojResolveAssemblyReference.cache
+C:\Users\mati1\Documents\mati proyecto\bin\Debug\TPFinal.exe
+C:\Users\mati1\Documents\mati proyecto\bin\Debug\TPFinal.pdb
+C:\Users\mati1\Documents\mati proyecto\obj\Debug\TPFinal.exe
+C:\Users\mati1\Documents\mati proyecto\obj\Debug\TPFinal.pdb
