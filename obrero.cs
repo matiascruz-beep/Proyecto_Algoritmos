@@ -16,12 +16,12 @@ namespace TPFinal
 	public class obrero
 	{
 		
-			private string nombre;
-			private string apellido;
-			private string dni;
-			private string legajo;
-			private double sueldo;
-			private string cargo;
+			protected string nombre;
+			protected string apellido;
+			protected string dni;
+			protected string legajo;
+			protected double sueldo;
+			protected string cargo;
 			
 			
 			public obrero (string n, string a, string d, string lej, double suel, string car)

@@ -34,7 +34,7 @@ namespace TPFinal
 			jefe jefe3 = new jefe(100000,"piuque","carteau","546765","88",1320000,"Ingeniera",grupo2);
 			jefe jefe4 = new jefe(100000,"ayelen","carteau","768686","323",786000,"Ingeniera",grupo7);
 			jefe jefe5 = new jefe(100000,"agustin","cruz","2134553","423",2650000,"Ingeniero",grupo8);
-			jefe jefe6 = new jefe(100000,"carlitos","contreras","465656","999",2650000,"Arquitecto",grupo2);
+			//jefe jefe6 = new jefe(100000,"carlitos","contreras","465656","999",2650000,"Arquitecto",grupo3);
 			
 			
 			//Creo un obrero
@@ -43,32 +43,29 @@ namespace TPFinal
 			NuevaEmpresa.AgregarObrero(ob1);
 			grupo1.AgregarObrero(ob1);
 			
-			grupo1.setJefe_asignado(jefe1);
-			grupo4.setJefe_asignado(jefe2);
-			grupo2.setJefe_asignado(jefe3);
-			grupo7.setJefe_asignado(jefe4);
-			grupo8.setJefe_asignado(jefe5);
-			grupo2.setJefe_asignado(jefe6);
+			//grupo1.setJefe_asignado(jefe1);
+			//grupo4.setJefe_asignado(jefe2);
+			//grupo2.setJefe_asignado(jefe3);
+			//grupo7.setJefe_asignado(jefe4);
+			//grupo8.setJefe_asignado(jefe5);
+			//grupo2.setJefe_asignado(jefe6);
 			
 			NuevaEmpresa.AgregarObrero(jefe1);
 			NuevaEmpresa.AgregarObrero(jefe2);
 			NuevaEmpresa.AgregarObrero(jefe3);
 			NuevaEmpresa.AgregarObrero(jefe4);
 			NuevaEmpresa.AgregarObrero(jefe5);
-			NuevaEmpresa.AgregarObrero(jefe6);
+			//NuevaEmpresa.AgregarObrero(jefe6);
 
 			
 			//CREANDO LAS OBRAS SIN JEFES NI GRUPOS 
 			/*obra (string nom,string dnPro,string codigo,double co,string tipo_ob,jefe eljefe)*/
-			obra Electricidad  = new obra ("martin","121",1,1300100,"Electricidad",jefe1);
-			obra construccion = new obra ("salomon","155",2,1200100, "Construccion",jefe2);
-			obra remodelacion = new obra ("Mauricio","399",3,1200100,"Remodelacion",jefe3);
-			obra pintura = new obra ("Mario","455",2,1200100,"Pintura",jefe4);
+			obra Electricidad  = new obra ("martin","121",1,1300100,"Electricidad",jefe1.Nombre);
+			obra construccion = new obra ("salomon","155",2,1200100, "Construccion",jefe2.Nombre);
+			obra remodelacion = new obra ("Mauricio","399",3,1200100,"Remodelacion",jefe3.Nombre);
+			obra pintura = new obra ("Mario","455",2,1200100,"Pintura",jefe4.Nombre);
 			
-			jefe1.setObra(Electricidad);
-			jefe2.setObra(construccion);
-			jefe3.setObra(remodelacion);
-			jefe4.setObra(pintura);
+			
 			
 			
 			//Agrego las obras a la lista de obras en ejecucion (MC)
@@ -253,6 +250,7 @@ namespace TPFinal
 			string legajo = verifica_Legajos(emp);
 
 			Console.Write("Sueldo destinado: ");
+			
 			double sueldo =  double.Parse(Console.ReadLine());
 			Console.Write("Cargo que ocupa: ");
 			string cargo = Console.ReadLine();
@@ -285,7 +283,7 @@ namespace TPFinal
 		
 	static string verifica_Legajos(empresa emp){
 		List<obrero> lista_Ob = emp.devolver_lista_obreros();
-		List<string> legajos = new List<string>();
+		//List<string> legajos = new List<string>();
 		Console.Write("Legajo: ");
 		string legajo1 = Console.ReadLine();
 		foreach (obrero ob in lista_Ob){
@@ -339,11 +337,11 @@ namespace TPFinal
 			NuevaEmpresa.AgregarObraFinalizada(obSeleccionada);
 			//Tengo que desvincular el jefe de la obra y ponerlo como disponible
 			List<jefe> lista_jefes =  devolver_lista_jefes(NuevaEmpresa);
-			foreach (jefe j in lista_jefes){
+			/*foreach (jefe j in lista_jefes){
 				if(j.getObra() == obSeleccionada){
 					j.setObra(null);
 				}
-			}
+			}*/
 			
 			NuevaEmpresa.eliminar_obra_en_ejecucion(obSeleccionada);
 			Console.WriteLine("Obra eliminada de la lista de obras en ejecución\n");
@@ -397,9 +395,9 @@ namespace TPFinal
 				grupoDeObreros grupoDesig = lista2[opcion2-1];
 				jefe nuevoJefe = new jefe (boni, ab.Nombre ,ab.Apellido, ab.Dni,ab.Legajo, ab.Sueldo, ab.Cargo, grupoDesig);
 				NuevaEmpresa.AgregarObrero(nuevoJefe);
-				lista2[opcion2-1].setJefe_asignado(nuevoJefe);
+				//lista2[opcion2-1].setJefe_asignado(nuevoJefe);
 				Console.WriteLine("El jefe se asigno el grupo " + lista2[opcion2-1].Nombre[5] );
-				Console.WriteLine("el grupo "+ lista2[opcion2-1].Nombre[5] + " tiene como jefe: " + lista2[opcion2-1].getJefe_asignado().Nombre);
+				//Console.WriteLine("el grupo "+ lista2[opcion2-1].Nombre[5] + " tiene como jefe: " + lista2[opcion2-1].getJefe_asignado().Nombre);
 				condicion = false;
 			}catch(ArgumentOutOfRangeException){Console.WriteLine("\nOpcion invalida, intente nuevamente");}
 			catch(FormatException){Console.WriteLine("Debe ingresar un numero");}
@@ -410,12 +408,19 @@ namespace TPFinal
 	
 	//La uso en crearObra() (mc)
 	static List<grupoDeObreros> devuelve_grupos_sin_jefe(empresa NuevaEmpresa){
-		List<grupoDeObreros> lista = NuevaEmpresa.devoler_lista_grupos();
-		List<grupoDeObreros> lista_grupos_sin_jefe = new List<grupoDeObreros>();
-		foreach (grupoDeObreros grupo in lista){
-			if(grupo.getJefe_asignado() == null){lista_grupos_sin_jefe.Add(grupo);}
+		List<grupoDeObreros> lista_grupos = NuevaEmpresa.devoler_lista_grupos();
+		List<jefe> lista_jefes = devolver_lista_jefes(NuevaEmpresa);
+		
+		for (int i=0 ; i< lista_jefes.Count ; i++){
+			for(int j = 0 ; j < lista_grupos.Count ; j++){
+				if(lista_jefes[i].getGrupo().Nombre == lista_grupos[j].Nombre){
+					grupoDeObreros grupo_a_eliminar = (grupoDeObreros)lista_grupos[j];
+					lista_grupos.Remove(grupo_a_eliminar);
+				}
+			}
 		}
-		return lista_grupos_sin_jefe;
+	
+		return lista_grupos;
 	}
 	
 	
@@ -495,12 +500,20 @@ namespace TPFinal
 		if (lista[i].Legajo == legajo)
 		{
 			jefe jefe_A_eliminar = lista[i];
-
+			
+			//tengo que recorrer las obras y desvincular al jefe eliminado si el jefe tiene una obra.
+			List<obra> lista_obras = NuevaEmpresa.devolver_lista_obras_ejecucion();
+			foreach(obra ob in lista_obras){
+				if(ob.nombre_Jefe == jefe_A_eliminar.Nombre){
+					ob.nombre_Jefe = null;
+				}
+			}
+			
 			/*// Desasignás el jefe de la obra
 			lista[i].JefeDeObra = null;*/
 				
 			//libero el grupo
-			lista[i].getGrupo().setJefe_asignado(null);
+			//lista[i].getGrupo().setJefe_asignado(null);
 			
 
 			// Eliminás al jefe de la empresa
@@ -556,9 +569,9 @@ namespace TPFinal
 			jefe jefe_asignado = lista[opcion-1];
 			
 			/*obra (string nom,string dnPro,string codigo,double co,string tipo_ob,jefe eljefe)*/
-			obra ob = new obra(Nombre_Propietario,Dni_propietario,codigo_interno,costo,NombreObra,jefe_asignado);
+			obra ob = new obra(Nombre_Propietario,Dni_propietario,codigo_interno,costo,NombreObra,jefe_asignado.Nombre);
 			NuevaEmpresa.AgregarObra(ob);
-			jefe_asignado.setObra(ob);
+			//jefe_asignado.setObra(ob); la saco ya que jefe no tiene que tener obra asignada
 			NuevaEmpresa.agregar_obra_en_ejecucion(ob);
 			Console.WriteLine("\nObra creada con exito");
 			
@@ -576,16 +589,19 @@ namespace TPFinal
 	}
 	
 	static List<jefe> devuelve_lista_jefes_disponibles(empresa NuevaEmpresa){
-		List<jefe> jefes_disponibles = new List<jefe>();
-		List<obrero> lista_obreros = NuevaEmpresa.devolver_lista_obreros();
-		foreach(obrero ob in lista_obreros){
-			if(ob.GetType() == typeof(jefe)){
-				jefe j = (jefe)ob;
-				if(j.getObra() == null)
-				jefes_disponibles.Add((jefe)ob);
+		//List<jefe> jefes_disponibles = new List<jefe>();
+		List<jefe> jefes = devolver_lista_jefes(NuevaEmpresa);
+		List<obra> lista_obras = NuevaEmpresa.devolver_lista_obras_ejecucion();
+		
+		for(int i = 0 ; i < lista_obras.Count ; i++){
+			for(int j = 0 ; j < jefes.Count ; j++){
+				if(jefes[j].Nombre == lista_obras[i].nombre_Jefe){
+					jefe jefe_no_disponible = jefes[j];
+					jefes.Remove(jefe_no_disponible);
+				}
 			}
 		}
-		return jefes_disponibles;
+		return jefes;
 	}
 	
 	static void muestra_jefes_disponibles(empresa NuevaEmpresa){

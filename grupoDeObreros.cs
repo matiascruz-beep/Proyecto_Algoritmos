@@ -20,28 +20,28 @@ namespace TPFinal
 		private string codigoObra;
 		private List<obrero> obrerosDeObra;
 		private string nombreGrupo;
-		private jefe jefeAsignado;
+		//private jefe jefeAsignado;
 		
-		public grupoDeObreros(string codigo, jefe jefeDesig,string nombre)
+		/*public grupoDeObreros(string codigo, jefe jefeDesig,string nombre)
 		{
 			codigoObra = codigo;
 			obrerosDeObra = new List<obrero>();
 			jefeAsignado = jefeDesig;
 			nombreGrupo = nombre;
 			
-		}
+		}*/
 		
 		public grupoDeObreros(string codigo, string nombre)
 		{
 			CodigoDeObra = codigo;
 			obrerosDeObra = new List<obrero>();
-			jefeAsignado = null;
+			//jefeAsignado = null;
 			nombreGrupo = nombre;
 		}
 		
-		public jefe getJefe_asignado(){return jefeAsignado;}
+		//public jefe getJefe_asignado(){return jefeAsignado;}
 		
-		public void setJefe_asignado(jefe j){this.jefeAsignado = j;}
+		//public void setJefe_asignado(jefe j){this.jefeAsignado = j;}
 		
 		public string CodigoDeObra{
 			set{codigoObra=value;}

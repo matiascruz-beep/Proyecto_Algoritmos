@@ -17,40 +17,49 @@ namespace TPFinal
 	public class obra
 	{
 	
-			private string nombre;
+			private string nombre_De_Obra;
 			private string dniPropietario;
 			private int codigoInterno;
 			//Agrego el atributo tipoOb (MC)
 			private string tipoObra;
 			private double costo;
-			private jefe jefeDeObra;
+			//private jefe jefeDeObra;
+			private string nom_jefe;
 			private grupoDeObreros losObrerosDeObra;
 			private double porcentajeDeAvance;
 			
 			
 			
-			public obra (string nom,string dnPro,int codigo,double co, jefe eljefe, grupoDeObreros losObreros){
-				nombre = nom;
+			public obra (string nom,string dnPro,int codigo,double co, string nombre_jefe, grupoDeObreros losObreros){
+				nombre_De_Obra = nom;
 				dniPropietario = dnPro;
 				codigoInterno = codigo;
 				costo = co;
-				jefe jefeDeObra = eljefe; 
+				//jefe jefeDeObra = eljefe; 
 				losObrerosDeObra = losObreros;
 				porcentajeDeAvance = 0;
+				nom_jefe = nombre_jefe;
 			}
 			
-				public obra (string nom,string dnPro,int codigo,double co,string tipo_ob,jefe eljefe){
-				nombre = nom;
+				public obra (string nom,string dnPro,int codigo,double co,string tipo_ob,string nombre_jefe){
+				nombre_De_Obra = nom;
 				dniPropietario = dnPro;
 				codigoInterno = codigo;
 				costo = co;
 				losObrerosDeObra = null;
 				tipoObra = tipo_ob;
 				porcentajeDeAvance = 0;
+				nom_jefe = nombre_jefe;
 				
 			}
 			
 			//creo el metodo para cambiar el estado (MC)
+			
+			public string nombre_Jefe{
+				set{nom_jefe = value;}
+				get{return nom_jefe;}
+			}
+			
 			public string tipo_Ob
 			{
 				set{tipoObra=value;}
@@ -62,10 +71,10 @@ namespace TPFinal
 				get{return porcentajeDeAvance;}
 			}
 			
-			public string Nombre
+			public string Nombre_Obra
 			{
-				set{nombre=value;}
-				get{return nombre;}
+				set{nombre_De_Obra=value;}
+				get{return nombre_De_Obra;}
 			}
 			public string DniPropietario
 				{
@@ -86,11 +95,6 @@ namespace TPFinal
 			}
 		
 			
-			public jefe JefeDeObra 
-			{
-				set{jefeDeObra=value;}
-				get{return jefeDeObra;}
-			}
 			
 		
 			public grupoDeObreros LosObrerosDeObra 
