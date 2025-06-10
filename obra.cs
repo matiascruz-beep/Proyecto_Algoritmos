@@ -23,25 +23,25 @@ namespace TPFinal
 			//Agrego el atributo tipoOb (MC)
 			private string tipoObra;
 			private double costo;
-			//private jefe jefeDeObra;
+			private jefe jefeDeObra;
 			private string nom_jefe;
 			private grupoDeObreros losObrerosDeObra;
 			private double porcentajeDeAvance;
 			
 			
 			
-			public obra (string nom,string dnPro,int codigo,double co, string nombre_jefe, grupoDeObreros losObreros){
+			public obra (string nom,string dnPro,int codigo,double co,jefe eljefe, grupoDeObreros losObreros){
 				nombre_De_Obra = nom;
 				dniPropietario = dnPro;
 				codigoInterno = codigo;
 				costo = co;
-				//jefe jefeDeObra = eljefe; 
+				jefeDeObra = eljefe; 
 				losObrerosDeObra = losObreros;
 				porcentajeDeAvance = 0;
-				nom_jefe = nombre_jefe;
+				//nom_jefe = nombre_jefe;
 			}
 			
-				public obra (string nom,string dnPro,int codigo,double co,string tipo_ob,string nombre_jefe){
+				public obra (string nom,string dnPro,int codigo,double co,string tipo_ob, jefe j){
 				nombre_De_Obra = nom;
 				dniPropietario = dnPro;
 				codigoInterno = codigo;
@@ -49,8 +49,7 @@ namespace TPFinal
 				losObrerosDeObra = null;
 				tipoObra = tipo_ob;
 				porcentajeDeAvance = 0;
-				nom_jefe = nombre_jefe;
-				
+				jefeDeObra = j;	
 			}
 			
 			//creo el metodo para cambiar el estado (MC)

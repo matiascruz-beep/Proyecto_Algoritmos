@@ -17,14 +17,14 @@ namespace TPFinal
 		{	
 			//CREANDO LA EMPRESA Y LOS GRUPOS
 			empresa NuevaEmpresa = new empresa ("AMD");
-			grupoDeObreros grupo1 = new grupoDeObreros("cod1","grupo1");
-			grupoDeObreros grupo2 = new grupoDeObreros("cod2","grupo2");
-			grupoDeObreros grupo3 = new grupoDeObreros("cod3","grupo3");
-			grupoDeObreros grupo4 = new grupoDeObreros("cod4","grupo4");
-			grupoDeObreros grupo5 = new grupoDeObreros("cod5","grupo5");
-			grupoDeObreros grupo6 = new grupoDeObreros("cod6","grupo6");
-			grupoDeObreros grupo7 = new grupoDeObreros("cod7","grupo7");
-			grupoDeObreros grupo8 = new grupoDeObreros("cod8","grupo8");
+			grupoDeObreros grupo1 = new grupoDeObreros("grupo1");
+			grupoDeObreros grupo2 = new grupoDeObreros("grupo2");
+			grupoDeObreros grupo3 = new grupoDeObreros("grupo3");
+			grupoDeObreros grupo4 = new grupoDeObreros("grupo4");
+			grupoDeObreros grupo5 = new grupoDeObreros("grupo5");
+			grupoDeObreros grupo6 = new grupoDeObreros("grupo6");
+			grupoDeObreros grupo7 = new grupoDeObreros("grupo7");
+			grupoDeObreros grupo8 = new grupoDeObreros("grupo8");
 			
 			//creo un jefe
 			/*public jefe (double bon, string n, string a, string d, string lej, double suel, string car , grupoDeObreros grupoDesig)*/
@@ -35,6 +35,8 @@ namespace TPFinal
 			jefe jefe4 = new jefe(100000,"ayelen","carteau","768686","323",786000,"Ingeniera",grupo7);
 			jefe jefe5 = new jefe(100000,"agustin","cruz","2134553","423",2650000,"Ingeniero",grupo8);
 			//jefe jefe6 = new jefe(100000,"carlitos","contreras","465656","999",2650000,"Arquitecto",grupo3);
+			
+			
 			
 			
 			//Creo un obrero
@@ -60,12 +62,16 @@ namespace TPFinal
 			
 			//CREANDO LAS OBRAS SIN JEFES NI GRUPOS 
 			/*obra (string nom,string dnPro,string codigo,double co,string tipo_ob,jefe eljefe)*/
-			obra Electricidad  = new obra ("martin","121",1,1300100,"Electricidad",jefe1.Nombre);
-			obra construccion = new obra ("salomon","155",2,1200100, "Construccion",jefe2.Nombre);
-			obra remodelacion = new obra ("Mauricio","399",3,1200100,"Remodelacion",jefe3.Nombre);
-			obra pintura = new obra ("Mario","455",2,1200100,"Pintura",jefe4.Nombre);
+			obra Electricidad  = new obra ("martin","121",1,1300100,"Electricidad",jefe1);
+			obra construccion = new obra ("salomon","155",2,1200100, "Construccion",jefe2);
+			obra remodelacion = new obra ("Mauricio","399",3,1200100,"Remodelacion",jefe3);
+			obra pintura = new obra ("Mario","455",2,1200100,"Pintura",jefe4);
 			
-			
+			//agrego a grupo1 el mismo codigo que la obra del jefe al que tienen asignado
+			grupo1.CodigoDeObra = Electricidad.CodigoInterno;
+			grupo4.CodigoDeObra = construccion.CodigoInterno;
+			grupo2.CodigoDeObra = remodelacion.CodigoInterno;
+			grupo7.CodigoDeObra = pintura.CodigoInterno;
 			
 			
 			//Agrego las obras a la lista de obras en ejecucion (MC)
@@ -569,11 +575,14 @@ namespace TPFinal
 			jefe jefe_asignado = lista[opcion-1];
 			
 			/*obra (string nom,string dnPro,string codigo,double co,string tipo_ob,jefe eljefe)*/
-			obra ob = new obra(Nombre_Propietario,Dni_propietario,codigo_interno,costo,NombreObra,jefe_asignado.Nombre);
+			obra ob = new obra(Nombre_Propietario,Dni_propietario,codigo_interno,costo,NombreObra,jefe_asignado);
 			NuevaEmpresa.AgregarObra(ob);
 			//jefe_asignado.setObra(ob); la saco ya que jefe no tiene que tener obra asignada
 			NuevaEmpresa.agregar_obra_en_ejecucion(ob);
 			Console.WriteLine("\nObra creada con exito");
+			
+			//le asigno al grupo que tiene el jefe el mismo codigo de obra que tiene la obra que cree
+			jefe_asignado.getGrupo().CodigoDeObra = ob.CodigoInterno;
 			
 		}
 		catch(ArgumentOutOfRangeException) 

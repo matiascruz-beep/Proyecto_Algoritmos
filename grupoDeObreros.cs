@@ -17,7 +17,7 @@ namespace TPFinal
 	/// </summary>
 	public class grupoDeObreros
 	{
-		private string codigoObra;
+		private int codigoObra;
 		private List<obrero> obrerosDeObra;
 		private string nombreGrupo;
 		//private jefe jefeAsignado;
@@ -31,7 +31,12 @@ namespace TPFinal
 			
 		}*/
 		
-		public grupoDeObreros(string codigo, string nombre)
+		public grupoDeObreros(string nombre){
+			nombreGrupo = nombre;
+			obrerosDeObra = new List<obrero>();
+		}
+		
+		public grupoDeObreros(int codigo, string nombre)
 		{
 			CodigoDeObra = codigo;
 			obrerosDeObra = new List<obrero>();
@@ -43,7 +48,7 @@ namespace TPFinal
 		
 		//public void setJefe_asignado(jefe j){this.jefeAsignado = j;}
 		
-		public string CodigoDeObra{
+		public int CodigoDeObra{
 			set{codigoObra=value;}
 			get{return codigoObra;}
 		}
