@@ -54,6 +54,10 @@ namespace TPFinal
 			
 			//creo el metodo para cambiar el estado (MC)
 			
+			public jefe getFefe(){
+				return jefeDeObra;
+			}
+			
 			public string nombre_Jefe{
 				set{nom_jefe = value;}
 				get{return nom_jefe;}

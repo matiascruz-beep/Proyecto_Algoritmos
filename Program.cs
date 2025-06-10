@@ -36,7 +36,11 @@ namespace TPFinal
 			jefe jefe5 = new jefe(100000,"agustin","cruz","2134553","423",2650000,"Ingeniero",grupo8);
 			//jefe jefe6 = new jefe(100000,"carlitos","contreras","465656","999",2650000,"Arquitecto",grupo3);
 			
-			
+			jefe1.Nom_grupo = grupo1.Nombre;
+			jefe2.Nom_grupo = grupo4.Nombre;
+			jefe3.Nom_grupo = grupo2.Nombre;
+			jefe4.Nom_grupo = grupo7.Nombre;
+			jefe5.Nom_grupo = grupo8.Nombre;
 			
 			
 			//Creo un obrero
@@ -399,7 +403,8 @@ namespace TPFinal
 				Console.Write("\nOpcion: ");
 				int opcion2 = int.Parse(Console.ReadLine());
 				grupoDeObreros grupoDesig = lista2[opcion2-1];
-				jefe nuevoJefe = new jefe (boni, ab.Nombre ,ab.Apellido, ab.Dni,ab.Legajo, ab.Sueldo, ab.Cargo, grupoDesig);
+				string nombre_grupo = grupoDesig.Nombre;
+				jefe nuevoJefe = new jefe (boni, ab.Nombre ,ab.Apellido, ab.Dni,ab.Legajo, ab.Sueldo, ab.Cargo, nombre_grupo ,grupoDesig);
 				NuevaEmpresa.AgregarObrero(nuevoJefe);
 				//lista2[opcion2-1].setJefe_asignado(nuevoJefe);
 				Console.WriteLine("El jefe se asigno el grupo " + lista2[opcion2-1].Nombre[5] );
@@ -581,8 +586,13 @@ namespace TPFinal
 			NuevaEmpresa.agregar_obra_en_ejecucion(ob);
 			Console.WriteLine("\nObra creada con exito");
 			
+			
 			//le asigno al grupo que tiene el jefe el mismo codigo de obra que tiene la obra que cree
 			jefe_asignado.getGrupo().CodigoDeObra = ob.CodigoInterno;
+			
+			Console.WriteLine("El nombre de grupo que tiene el jefe es de: {0} , y el grupo asignado tiene como nombre:{1}",jefe_asignado.Nom_grupo,jefe_asignado.getGrupo().Nombre );
+			//Asigno el nombre del grupo al jefe desde el grupo que contiene al jefe
+			jefe_asignado.Nom_grupo = jefe_asignado.getGrupo().Nombre;
 			
 		}
 		catch(ArgumentOutOfRangeException) 
@@ -604,8 +614,8 @@ namespace TPFinal
 		
 		for(int i = 0 ; i < lista_obras.Count ; i++){
 			for(int j = 0 ; j < jefes.Count ; j++){
-				if(jefes[j].Nombre == lista_obras[i].nombre_Jefe){
-					jefe jefe_no_disponible = jefes[j];
+				if(jefes[j].Nombre == lista_obras[i].getFefe().Nombre){
+					jefe jefe_no_disponible = (jefe)jefes[j];
 					jefes.Remove(jefe_no_disponible);
 				}
 			}

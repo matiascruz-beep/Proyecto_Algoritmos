@@ -16,20 +16,33 @@ namespace TPFinal
 	public class jefe: obrero
 	{
 		
-	
+			string nom_grup;
 			double bonificacion;
 						
 			private grupoDeObreros grupoAsignado;
-
 			
-			public jefe (double bon, string n, string a, string d, string lej, double suel, string car, grupoDeObreros grupoDesig):base(n,a,d,lej,suel,car)
+			public jefe (double bon, string n, string a, string d, string lej, double suel, string car,grupoDeObreros grupoDesig):base(n,a,d,lej,suel,car)
 			{
+
 				bonificacion = bon;
 				this.grupoAsignado = grupoDesig;
 
 				
 			}
 			
+			public jefe (double bon, string n, string a, string d, string lej, double suel, string car,string nombre_grupo ,grupoDeObreros grupoDesig):base(n,a,d,lej,suel,car)
+			{
+				nom_grup = nombre_grupo;
+				bonificacion = bon;
+				this.grupoAsignado = grupoDesig;
+
+				
+			}
+			
+			public string Nom_grupo{
+				set{nom_grup=value;}
+				get{return nom_grup;}
+			}
 			
 			public double Bonificacion
 			{
